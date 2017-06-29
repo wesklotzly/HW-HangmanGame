@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hangman Game</title>
+	</head>
+
+<script>
+
+	var randWordArray = ["pizza", "nintendo", "beer", "lamborghini", "espresso", "monster"];
+	var randWord = randWordArray[Math.floor(Math.random() * randWordArray.length)];
+	var answer = randWord
+	
+	var count = 0;
+	var answerArr = [];
+	var e = answerArr.join(" ");
+
+	function startUp()
+		{
+			for (var i = 0; i < randWord.length; i++)
+			{
+				answerArr[i] = "_";
+			}
+
+			
+
+			document.getElementById("answer").innerHTML = e;
+
+		}
+
+	function Letter()
+		{
+			var letter = document.getElementById("letter").value;
+
+			if (letter.length > 0)
+				{
+					for (var i = 0; i < randWord.length; i++)
+					{
+						if (randWord[i] === letter)
+						{
+							answerArr[i] = letter;
+						}
+					}
+					count++;
+					document.getElementById("counter").innerHTML = "Guessed " + count + " times";
+					document.getElementById("answer").innerHTML = answerArr.join(" ");
+				}
+			if(count>8)
+			{
+				document.getElementById("stat").innerHTML = "Really? A child could have guessed it by now!";
+			}
+		 
+
+		}
+
+
+	</script>
+
+<body onload="startUp()">
+	<h1>Hangman!</h1>
+	<h2>Guess your letter</h2>
+	<input id="letter" type="text">
+	<input type="button" value="Guess" onClick="Letter()">
+	<p id="answer"></p>
+	<p id="counter"></p>
+	<p id="stat"></p>
+	<br>
+	
+</body>
+
+
+
+
+
+</html>
